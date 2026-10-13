@@ -1,0 +1,7 @@
+STATUS,order_lines,orders,sales
+Shipped,2617,286,9291501.08
+Cancelled,60,4,194487.48
+On Hold,44,4,178979.19
+Resolved,47,4,150718.28
+In Process,41,6,144729.96
+Disputed,14,3,72212.86

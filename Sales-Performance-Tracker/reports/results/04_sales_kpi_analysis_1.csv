@@ -1,0 +1,3 @@
+scope,order_lines,orders,customers,units,sales,average_order_value
+All statuses,2823,307,92,99067,10032628.85,32679.57
+Shipped only,2617,286,92,91403,9291501.08,32487.77

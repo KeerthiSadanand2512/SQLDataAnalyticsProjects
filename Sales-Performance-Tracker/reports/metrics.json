@@ -1,0 +1,498 @@
+{
+  "kpis": [
+    {
+      "scope": "All statuses",
+      "order_lines": 2823,
+      "orders": 307,
+      "customers": 92,
+      "units": 99067,
+      "sales": 10032628.85,
+      "average_order_value": 32679.57
+    },
+    {
+      "scope": "Shipped only",
+      "order_lines": 2617,
+      "orders": 286,
+      "customers": 92,
+      "units": 91403,
+      "sales": 9291501.08,
+      "average_order_value": 32487.77
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2003-01",
+      "sales": 129753.6,
+      "orders": 5,
+      "month_growth_pct": null
+    },
+    {
+      "month": "2003-02",
+      "sales": 140836.19,
+      "orders": 3,
+      "month_growth_pct": 8.54
+    },
+    {
+      "month": "2003-03",
+      "sales": 174504.9,
+      "orders": 6,
+      "month_growth_pct": 23.91
+    },
+    {
+      "month": "2003-04",
+      "sales": 201609.55,
+      "orders": 7,
+      "month_growth_pct": 15.53
+    },
+    {
+      "month": "2003-05",
+      "sales": 192673.11,
+      "orders": 6,
+      "month_growth_pct": -4.43
+    },
+    {
+      "month": "2003-06",
+      "sales": 168082.56,
+      "orders": 6,
+      "month_growth_pct": -12.76
+    },
+    {
+      "month": "2003-07",
+      "sales": 187731.88,
+      "orders": 6,
+      "month_growth_pct": 11.69
+    },
+    {
+      "month": "2003-08",
+      "sales": 197809.3,
+      "orders": 5,
+      "month_growth_pct": 5.37
+    },
+    {
+      "month": "2003-09",
+      "sales": 263973.36,
+      "orders": 8,
+      "month_growth_pct": 33.45
+    },
+    {
+      "month": "2003-10",
+      "sales": 568290.97,
+      "orders": 17,
+      "month_growth_pct": 115.28
+    },
+    {
+      "month": "2003-11",
+      "sales": 1029837.66,
+      "orders": 28,
+      "month_growth_pct": 81.22
+    },
+    {
+      "month": "2003-12",
+      "sales": 261876.46,
+      "orders": 7,
+      "month_growth_pct": -74.57
+    },
+    {
+      "month": "2004-01",
+      "sales": 316577.42,
+      "orders": 8,
+      "month_growth_pct": 20.89
+    },
+    {
+      "month": "2004-02",
+      "sales": 311419.53,
+      "orders": 10,
+      "month_growth_pct": -1.63
+    },
+    {
+      "month": "2004-03",
+      "sales": 205733.73,
+      "orders": 7,
+      "month_growth_pct": -33.94
+    },
+    {
+      "month": "2004-04",
+      "sales": 206148.12,
+      "orders": 10,
+      "month_growth_pct": 0.2
+    },
+    {
+      "month": "2004-05",
+      "sales": 273438.39,
+      "orders": 8,
+      "month_growth_pct": 32.64
+    },
+    {
+      "month": "2004-06",
+      "sales": 286674.22,
+      "orders": 10,
+      "month_growth_pct": 4.84
+    },
+    {
+      "month": "2004-07",
+      "sales": 327144.09,
+      "orders": 10,
+      "month_growth_pct": 14.12
+    },
+    {
+      "month": "2004-08",
+      "sales": 461501.27,
+      "orders": 12,
+      "month_growth_pct": 41.07
+    },
+    {
+      "month": "2004-09",
+      "sales": 320750.91,
+      "orders": 12,
+      "month_growth_pct": -30.5
+    },
+    {
+      "month": "2004-10",
+      "sales": 552924.25,
+      "orders": 13,
+      "month_growth_pct": 72.38
+    },
+    {
+      "month": "2004-11",
+      "sales": 1089048.01,
+      "orders": 33,
+      "month_growth_pct": 96.96
+    },
+    {
+      "month": "2004-12",
+      "sales": 372802.66,
+      "orders": 11,
+      "month_growth_pct": -65.77
+    },
+    {
+      "month": "2005-01",
+      "sales": 339543.42,
+      "orders": 12,
+      "month_growth_pct": -8.92
+    },
+    {
+      "month": "2005-02",
+      "sales": 358186.18,
+      "orders": 12,
+      "month_growth_pct": 5.49
+    },
+    {
+      "month": "2005-03",
+      "sales": 374262.76,
+      "orders": 12,
+      "month_growth_pct": 4.49
+    },
+    {
+      "month": "2005-04",
+      "sales": 261633.29,
+      "orders": 9,
+      "month_growth_pct": -30.09
+    },
+    {
+      "month": "2005-05",
+      "sales": 457861.06,
+      "orders": 14,
+      "month_growth_pct": 75.0
+    }
+  ],
+  "products": [
+    {
+      "PRODUCTLINE": "Classic Cars",
+      "sales": 3919615.66,
+      "sales_share_pct": 39.07,
+      "units": 33992,
+      "orders": 199
+    },
+    {
+      "PRODUCTLINE": "Vintage Cars",
+      "sales": 1903150.84,
+      "sales_share_pct": 18.97,
+      "units": 21069,
+      "orders": 175
+    },
+    {
+      "PRODUCTLINE": "Motorcycles",
+      "sales": 1166388.34,
+      "sales_share_pct": 11.63,
+      "units": 11663,
+      "orders": 72
+    },
+    {
+      "PRODUCTLINE": "Trucks and Buses",
+      "sales": 1127789.84,
+      "sales_share_pct": 11.24,
+      "units": 10777,
+      "orders": 73
+    },
+    {
+      "PRODUCTLINE": "Planes",
+      "sales": 975003.57,
+      "sales_share_pct": 9.72,
+      "units": 10727,
+      "orders": 59
+    },
+    {
+      "PRODUCTLINE": "Ships",
+      "sales": 714437.13,
+      "sales_share_pct": 7.12,
+      "units": 8127,
+      "orders": 65
+    },
+    {
+      "PRODUCTLINE": "Trains",
+      "sales": 226243.47,
+      "sales_share_pct": 2.26,
+      "units": 2712,
+      "orders": 45
+    }
+  ],
+  "countries": [
+    {
+      "COUNTRY": "USA",
+      "sales": 3627982.83,
+      "orders": 112,
+      "customers": 35,
+      "sales_share_pct": 36.16
+    },
+    {
+      "COUNTRY": "Spain",
+      "sales": 1215686.92,
+      "orders": 36,
+      "customers": 5,
+      "sales_share_pct": 12.12
+    },
+    {
+      "COUNTRY": "France",
+      "sales": 1110916.52,
+      "orders": 37,
+      "customers": 12,
+      "sales_share_pct": 11.07
+    },
+    {
+      "COUNTRY": "Australia",
+      "sales": 630623.1,
+      "orders": 19,
+      "customers": 5,
+      "sales_share_pct": 6.29
+    },
+    {
+      "COUNTRY": "UK",
+      "sales": 478880.46,
+      "orders": 13,
+      "customers": 5,
+      "sales_share_pct": 4.77
+    },
+    {
+      "COUNTRY": "Italy",
+      "sales": 374674.31,
+      "orders": 8,
+      "customers": 3,
+      "sales_share_pct": 3.73
+    },
+    {
+      "COUNTRY": "Finland",
+      "sales": 329581.91,
+      "orders": 9,
+      "customers": 3,
+      "sales_share_pct": 3.29
+    },
+    {
+      "COUNTRY": "Norway",
+      "sales": 307463.7,
+      "orders": 9,
+      "customers": 3,
+      "sales_share_pct": 3.06
+    },
+    {
+      "COUNTRY": "Singapore",
+      "sales": 288488.41,
+      "orders": 9,
+      "customers": 2,
+      "sales_share_pct": 2.88
+    },
+    {
+      "COUNTRY": "Denmark",
+      "sales": 245637.15,
+      "orders": 7,
+      "customers": 2,
+      "sales_share_pct": 2.45
+    },
+    {
+      "COUNTRY": "Canada",
+      "sales": 224078.56,
+      "orders": 7,
+      "customers": 3,
+      "sales_share_pct": 2.23
+    },
+    {
+      "COUNTRY": "Germany",
+      "sales": 220472.09,
+      "orders": 7,
+      "customers": 3,
+      "sales_share_pct": 2.2
+    },
+    {
+      "COUNTRY": "Sweden",
+      "sales": 210014.21,
+      "orders": 7,
+      "customers": 2,
+      "sales_share_pct": 2.09
+    },
+    {
+      "COUNTRY": "Austria",
+      "sales": 202062.53,
+      "orders": 7,
+      "customers": 2,
+      "sales_share_pct": 2.01
+    },
+    {
+      "COUNTRY": "Japan",
+      "sales": 188167.81,
+      "orders": 6,
+      "customers": 2,
+      "sales_share_pct": 1.88
+    },
+    {
+      "COUNTRY": "Switzerland",
+      "sales": 117713.56,
+      "orders": 2,
+      "customers": 1,
+      "sales_share_pct": 1.17
+    },
+    {
+      "COUNTRY": "Belgium",
+      "sales": 108412.62,
+      "orders": 7,
+      "customers": 2,
+      "sales_share_pct": 1.08
+    },
+    {
+      "COUNTRY": "Philippines",
+      "sales": 94015.73,
+      "orders": 3,
+      "customers": 1,
+      "sales_share_pct": 0.94
+    },
+    {
+      "COUNTRY": "Ireland",
+      "sales": 57756.43,
+      "orders": 2,
+      "customers": 1,
+      "sales_share_pct": 0.58
+    }
+  ],
+  "top_customers": [
+    {
+      "CUSTOMERNAME": "Euro Shopping Channel",
+      "orders": 26,
+      "sales": 912294.11,
+      "average_order_value": 35088.24,
+      "first_order": "2003-01-31 00:00:00",
+      "latest_order": "2005-05-31 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Mini Gifts Distributors Ltd.",
+      "orders": 17,
+      "sales": 654858.06,
+      "average_order_value": 38521.06,
+      "first_order": "2003-03-26 00:00:00",
+      "latest_order": "2005-05-29 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Australian Collectors, Co.",
+      "orders": 5,
+      "sales": 200995.41,
+      "average_order_value": 40199.08,
+      "first_order": "2003-04-29 00:00:00",
+      "latest_order": "2004-11-29 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Muscle Machine Inc",
+      "orders": 4,
+      "sales": 197736.94,
+      "average_order_value": 49434.24,
+      "first_order": "2003-06-03 00:00:00",
+      "latest_order": "2004-12-01 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "La Rochelle Gifts",
+      "orders": 4,
+      "sales": 180124.9,
+      "average_order_value": 45031.22,
+      "first_order": "2004-07-23 00:00:00",
+      "latest_order": "2005-05-31 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Dragon Souveniers, Ltd.",
+      "orders": 5,
+      "sales": 172989.68,
+      "average_order_value": 34597.94,
+      "first_order": "2003-04-16 00:00:00",
+      "latest_order": "2005-03-02 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Land of Toys Inc.",
+      "orders": 4,
+      "sales": 164069.44,
+      "average_order_value": 41017.36,
+      "first_order": "2003-02-24 00:00:00",
+      "latest_order": "2004-11-15 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "The Sharp Gifts Warehouse",
+      "orders": 4,
+      "sales": 160010.27,
+      "average_order_value": 40002.57,
+      "first_order": "2004-05-11 00:00:00",
+      "latest_order": "2005-04-22 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "AV Stores, Co.",
+      "orders": 3,
+      "sales": 157807.81,
+      "average_order_value": 52602.6,
+      "first_order": "2003-03-18 00:00:00",
+      "latest_order": "2004-11-17 00:00:00"
+    },
+    {
+      "CUSTOMERNAME": "Anna's Decorations, Ltd",
+      "orders": 4,
+      "sales": 153996.13,
+      "average_order_value": 38499.03,
+      "first_order": "2003-09-11 00:00:00",
+      "latest_order": "2005-03-09 00:00:00"
+    }
+  ],
+  "segments": [
+    {
+      "segment": "Champions",
+      "customers": 17,
+      "sales": 3843324.83,
+      "average_recency_days": 61.2
+    },
+    {
+      "segment": "Occasional / inactive",
+      "customers": 42,
+      "sales": 3339905.86,
+      "average_recency_days": 290.0
+    },
+    {
+      "segment": "Recent / developing",
+      "customers": 28,
+      "sales": 2374362.96,
+      "average_recency_days": 94.6
+    },
+    {
+      "segment": "At risk",
+      "customers": 4,
+      "sales": 441595.1,
+      "average_recency_days": 202.0
+    },
+    {
+      "segment": "Loyal",
+      "customers": 1,
+      "sales": 33440.1,
+      "average_recency_days": 142.0
+    }
+  ]
+}
