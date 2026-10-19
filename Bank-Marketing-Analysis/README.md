@@ -70,10 +70,3 @@ See [MYSQL_SETUP.md](MYSQL_SETUP.md) for click-by-click instructions and trouble
 
 All 41,188 emitted import records were compared field by field with the source-derived data, and repeat-import behavior was checked. End-to-end execution against MySQL remains unverified. Run the validation SQL locally; all six flags should equal 1. The dashboard and CSVs are reference snapshots from the original analysis, not verified MySQL exports.
 
-## Publish on GitHub
-Create an empty repository named `bank-marketing-sql-analysis`, upload this folder's contents, and keep the directory structure intact so the README image renders. Suggested description: “SQL analysis of 41,188 bank marketing records with customer segmentation, campaign insights, and an offline dashboard.”
-
-The project is prepared for upload; it has not been published to a GitHub account.
-
-## Attribution and licensing
-Dataset: Moro, S., Rita, P., & Cortez, P. (2014). *Bank Marketing*. UCI Machine Learning Repository. [DOI: 10.24432/C5K306](https://doi.org/10.24432/C5K306). Data is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Original CSV is unchanged; normalized data and aggregates are derived works. See [ATTRIBUTION.md](ATTRIBUTION.md). Project code is provided under the MIT license in [LICENSE](LICENSE).
