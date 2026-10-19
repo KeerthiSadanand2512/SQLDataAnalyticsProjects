@@ -68,5 +68,5 @@ See [MYSQL_SETUP.md](MYSQL_SETUP.md) for click-by-click instructions and trouble
 
 ## Validation status
 
-All 41,188 emitted import records were compared field by field with the source-derived data, and repeat-import behavior was checked. End-to-end execution against MySQL remains unverified. Run the validation SQL locally; all six flags should equal 1. The dashboard and CSVs are reference snapshots from the original analysis, not verified MySQL exports.
+All 41,188 emitted import records were compared field by field with the source-derived data, and repeat-import behavior was checked. End-to-end execution against MySQL remains unverified. Run the validation SQL locally; all six flags should equal 1. The dashboard and CSVs are reference snapshots from the original analysis.
 
