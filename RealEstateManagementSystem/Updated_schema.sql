@@ -1,283 +1,215 @@
-Drop database if exists real_estate;
-CREATE DATABASE real_estate;
+-- Run once in an empty database. No existing database is dropped.
+CREATE DATABASE IF NOT EXISTS real_estate CHARACTER SET utf8mb4;
 USE real_estate;
-Drop tables if exists Owners;
-Drop tables if exists Locations;
-Drop tables if exists Properties;
-Drop tables if exists Agencies;
-Drop tables if exists Agents;
-Drop tables if exists Listings;
-Drop tables if exists Buyers;
-Drop tables if exists Transactions;
-Drop tables if exists Tenants;
-Drop tables if exists LeaseAgreements;
-Drop tables if exists Rentals;
-Drop tables if exists Payments;
-Drop tables if exists Inspections;
-Drop tables if exists MaintenanceRequests;
-Drop tables if exists LegalDocuments;
-Drop tables if exists Commissions;
 
--- Owners Table
 CREATE TABLE Owners (
-    owner_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    phone VARCHAR(20) NOT NULL CHECK (phone REGEXP '^[0-9]{10,15}$'),
-    address TEXT
-);
+owner_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Locations Table
+CREATE TABLE Buyers (
+buyer_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE Tenants (
+tenant_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 CREATE TABLE Locations (
-    location_id INT PRIMARY KEY AUTO_INCREMENT,
+location_id INT PRIMARY KEY AUTO_INCREMENT,
     city VARCHAR(100) NOT NULL,
     state VARCHAR(100) NOT NULL,
-    zipcode VARCHAR(10) NOT NULL CHECK (zipcode REGEXP '^[0-9]{5}(-[0-9]{4})?$'),
-    country VARCHAR(100) NOT NULL
-);
+    zipcode VARCHAR(10) NOT NULL,
+    country CHAR(2) NOT NULL DEFAULT 'US',
+    UNIQUE (city, state, zipcode, country),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Properties Table
-CREATE TABLE Properties (
-    property_id INT PRIMARY KEY AUTO_INCREMENT,
-    owner_id INT,
-    location_id INT,
-    property_type ENUM('Apartment', 'House', 'Condo', 'Land', 'Commercial') NOT NULL,
-    size DECIMAL(10,2) CHECK (size > 0),
-    price DECIMAL(12,2) NOT NULL CHECK (price > 0),
-    status ENUM('Available', 'Sold', 'Rented') NOT NULL,
-    FOREIGN KEY (owner_id) REFERENCES Owners(owner_id) ON DELETE SET NULL,
-    FOREIGN KEY (location_id) REFERENCES Locations(location_id) ON DELETE SET NULL
-);
-
--- Agencies Table
 CREATE TABLE Agencies (
-    agency_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) UNIQUE NOT NULL
-);
+agency_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Agents Table
 CREATE TABLE Agents (
-    agent_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    phone VARCHAR(20) NOT NULL CHECK (phone REGEXP '^[0-9]{10,15}$'),
-    agency_id INT,
-    FOREIGN KEY (agency_id) REFERENCES Agencies(agency_id) ON DELETE SET NULL
-);
+agent_id INT PRIMARY KEY AUTO_INCREMENT,
+    agency_id INT NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (agency_id) REFERENCES Agencies(agency_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Listings Table
+CREATE TABLE Properties (
+property_id INT PRIMARY KEY AUTO_INCREMENT,
+    owner_id INT NOT NULL,
+    location_id INT NOT NULL,
+    street_address VARCHAR(200) NOT NULL,
+    unit_number VARCHAR(20) NOT NULL DEFAULT '',
+    property_type ENUM('Apartment','House','Condo','Land','Commercial') NOT NULL,
+    size_sqft DECIMAL(12,2) NOT NULL CHECK (size_sqft > 0),
+    asking_price DECIMAL(12,2) NOT NULL CHECK (asking_price > 0),
+    status ENUM('Available','Sold','Rented','Archived') NOT NULL,
+    UNIQUE (location_id, street_address, unit_number),
+    INDEX idx_property_status_location (status, location_id),
+    FOREIGN KEY (owner_id) REFERENCES Owners(owner_id) ON DELETE RESTRICT,
+    FOREIGN KEY (location_id) REFERENCES Locations(location_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 CREATE TABLE Listings (
-    listing_id INT PRIMARY KEY AUTO_INCREMENT,
-    property_id INT,
-    agent_id INT,
+listing_id INT PRIMARY KEY AUTO_INCREMENT,
+    property_id INT NOT NULL,
+    agent_id INT NOT NULL,
+    listing_type ENUM('Sale','Rent') NOT NULL,
     listing_date DATE NOT NULL,
-    expiration_date DATE,
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE,
-    FOREIGN KEY (agent_id) REFERENCES Agents(agent_id) ON DELETE SET NULL
-);
+    expiration_date DATE NOT NULL,
+    closed_date DATE,
+    asking_price DECIMAL(12,2) NOT NULL CHECK (asking_price > 0),
+    CHECK (expiration_date >= listing_date),
+    CHECK (closed_date IS NULL OR closed_date >= listing_date),
+    INDEX idx_listing_agent_date (agent_id, listing_date),
+    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE RESTRICT,
+    FOREIGN KEY (agent_id) REFERENCES Agents(agent_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Buyers Table
-CREATE TABLE Buyers (
-    buyer_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    phone VARCHAR(20) NOT NULL CHECK (phone REGEXP '^[0-9]{10,15}$')
-);
-
--- Transactions Table
 CREATE TABLE Transactions (
-    transaction_id INT PRIMARY KEY AUTO_INCREMENT,
-    property_id INT,
-    buyer_id INT,
-    agent_id INT,
+transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+    listing_id INT NOT NULL UNIQUE,
+    buyer_id INT NOT NULL,
+    seller_id INT NOT NULL,
     transaction_date DATE NOT NULL,
     sale_price DECIMAL(12,2) NOT NULL CHECK (sale_price > 0),
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE,
-    FOREIGN KEY (buyer_id) REFERENCES Buyers(buyer_id) ON DELETE SET NULL,
-    FOREIGN KEY (agent_id) REFERENCES Agents(agent_id) ON DELETE SET NULL
-);
+    INDEX idx_transaction_date (transaction_date),
+    FOREIGN KEY (listing_id) REFERENCES Listings(listing_id) ON DELETE RESTRICT,
+    FOREIGN KEY (buyer_id) REFERENCES Buyers(buyer_id) ON DELETE RESTRICT,
+    FOREIGN KEY (seller_id) REFERENCES Owners(owner_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Tenants Table
-CREATE TABLE Tenants (
-    tenant_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    phone VARCHAR(20) NOT NULL CHECK (phone REGEXP '^[0-9]{10,15}$')
-);
-
--- Lease Agreements Table
 CREATE TABLE LeaseAgreements (
-    lease_id INT PRIMARY KEY AUTO_INCREMENT,
-    property_id INT,
-    tenant_id INT,
+lease_id INT PRIMARY KEY AUTO_INCREMENT,
+    property_id INT NOT NULL,
+    tenant_id INT NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     terms TEXT,
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE,
-    FOREIGN KEY (tenant_id) REFERENCES Tenants(tenant_id) ON DELETE CASCADE
-);
+    CHECK (end_date > start_date),
+    INDEX idx_lease_property_dates (property_id, start_date, end_date),
+    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE RESTRICT,
+    FOREIGN KEY (tenant_id) REFERENCES Tenants(tenant_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Rentals Table
 CREATE TABLE Rentals (
-    rental_id INT PRIMARY KEY AUTO_INCREMENT,
-    property_id INT,
-    lease_id INT UNIQUE,
+rental_id INT PRIMARY KEY AUTO_INCREMENT,
+    lease_id INT NOT NULL UNIQUE,
     rent_amount DECIMAL(10,2) NOT NULL CHECK (rent_amount > 0),
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE,
-    FOREIGN KEY (lease_id) REFERENCES LeaseAgreements(lease_id) ON DELETE CASCADE
-);
+    FOREIGN KEY (lease_id) REFERENCES LeaseAgreements(lease_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Payments Table
+CREATE TABLE RentCharges (
+charge_id INT PRIMARY KEY AUTO_INCREMENT,
+    rental_id INT NOT NULL,
+    period_start DATE NOT NULL,
+    due_date DATE NOT NULL,
+    amount_due DECIMAL(10,2) NOT NULL CHECK (amount_due > 0),
+    UNIQUE (rental_id, period_start),
+    INDEX idx_charge_due_date (due_date),
+    CHECK (due_date >= period_start),
+    FOREIGN KEY (rental_id) REFERENCES Rentals(rental_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 CREATE TABLE Payments (
-    payment_id INT PRIMARY KEY AUTO_INCREMENT,
-    rental_id INT,
+payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    charge_id INT NOT NULL,
     payment_date DATE NOT NULL,
     amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
-    method ENUM('Credit Card', 'Bank Transfer', 'Cash', 'Cheque') NOT NULL,
-    FOREIGN KEY (rental_id) REFERENCES Rentals(rental_id) ON DELETE CASCADE
-);
+    method ENUM('Credit Card','Bank Transfer','Cash','Cheque') NOT NULL,
+    reference_code VARCHAR(80) NOT NULL UNIQUE,
+    INDEX idx_payment_charge_date (charge_id, payment_date),
+    INDEX idx_payment_date (payment_date),
+    FOREIGN KEY (charge_id) REFERENCES RentCharges(charge_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
--- Inspections Table
 CREATE TABLE Inspections (
-    inspection_id INT PRIMARY KEY AUTO_INCREMENT,
+inspection_id INT PRIMARY KEY AUTO_INCREMENT,
     property_id INT NOT NULL,
-    inspector_name VARCHAR(255) NOT NULL,
+    inspector_name VARCHAR(150) NOT NULL,
     inspection_date DATE NOT NULL,
     findings TEXT,
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE
-);
+    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
-
--- MaintenanceRequests Table
 CREATE TABLE MaintenanceRequests (
-    request_id INT PRIMARY KEY AUTO_INCREMENT,
+request_id INT PRIMARY KEY AUTO_INCREMENT,
     property_id INT NOT NULL,
-    tenant_id INT,  -- Allow tenant_id to be NULL
+    tenant_id INT,
     request_date DATE NOT NULL,
-    status ENUM('Pending', 'In Progress', 'Completed') DEFAULT 'Pending',
-    details TEXT,
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE,
-    FOREIGN KEY (tenant_id) REFERENCES Tenants(tenant_id) ON DELETE SET NULL
-);
+    completed_date DATE,
+    status ENUM('Pending','In Progress','Completed') NOT NULL DEFAULT 'Pending',
+    cost DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (cost >= 0),
+    details TEXT NOT NULL,
+    CHECK (completed_date IS NULL OR completed_date >= request_date),
+    CHECK ((status = 'Completed' AND completed_date IS NOT NULL)
+        OR (status <> 'Completed' AND completed_date IS NULL)),
+    INDEX idx_maintenance_status_date (status, request_date),
+    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE RESTRICT,
+    FOREIGN KEY (tenant_id) REFERENCES Tenants(tenant_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
-
-
---  LegalDocuments Table
 CREATE TABLE LegalDocuments (
-    document_id INT PRIMARY KEY AUTO_INCREMENT,
+document_id INT PRIMARY KEY AUTO_INCREMENT,
     property_id INT NOT NULL,
-    document_type ENUM('Lease Agreement', 'Ownership Document', 'Inspection Report', 'Other') NOT NULL,
-    document_text TEXT,
+    document_type ENUM('Lease Agreement','Ownership Document','Inspection Report','Other') NOT NULL,
+    document_text TEXT NOT NULL,
     upload_date DATE NOT NULL,
-    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE CASCADE
-);
+    FOREIGN KEY (property_id) REFERENCES Properties(property_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
-
--- Commission Table
 CREATE TABLE Commissions (
-    commission_id INT PRIMARY KEY AUTO_INCREMENT,
-    agent_id INT NOT NULL,
-    transaction_id INT NOT NULL,
+commission_id INT PRIMARY KEY AUTO_INCREMENT,
+    transaction_id INT NOT NULL UNIQUE,
     amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
-    FOREIGN KEY (agent_id) REFERENCES Agents(agent_id) ON DELETE CASCADE,
-    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON DELETE CASCADE
-);
-
-
-
-
-
-
-
-
-
-
-
--- Properties Table
--- Index on owner_id and location_id to speed up lookups by owner or location:
-CREATE INDEX idx_properties_owner ON Properties(owner_id);
-CREATE INDEX idx_properties_location ON Properties(location_id);
--- Index on status if queries frequently filter by property status:
-CREATE INDEX idx_properties_status ON Properties(status);
-
--- Listings Table
--- Index on property_id and agent_id to optimize searches for properties listed by agents:
-CREATE INDEX idx_listings_property ON Listings(property_id);
-CREATE INDEX idx_listings_agent ON Listings(agent_id);
--- Index on listing_date for filtering by recent listings:
-CREATE INDEX idx_listings_date ON Listings(listing_date);
-
--- Transactions Table
--- Index on property_id, buyer_id, and agent_id to speed up sales history lookups:
-CREATE INDEX idx_transactions_property ON Transactions(property_id);
-CREATE INDEX idx_transactions_buyer ON Transactions(buyer_id);
-CREATE INDEX idx_transactions_agent ON Transactions(agent_id);
--- Index on transaction_date for filtering by sale date:
-CREATE INDEX idx_transactions_date ON Transactions(transaction_date);
-
--- Rentals Table
--- Index on property_id for faster rental queries:
-CREATE INDEX idx_rentals_property ON Rentals(property_id);
--- Index on lease_id since it's unique and referenced often:
-CREATE UNIQUE INDEX idx_rentals_lease ON Rentals(lease_id);
-
--- Payments Table
--- Index on rental_id for quicker payment lookups:
-CREATE INDEX idx_payments_rental ON Payments(rental_id);
--- Index on payment_date for sorting and filtering payments by date:
-CREATE INDEX idx_payments_date ON Payments(payment_date);
-
-
--- MaintenanceRequests Table
--- Index on property_id and tenant_id for quicker maintenance request lookups:
-CREATE INDEX idx_maintenance_property ON MaintenanceRequests(property_id);
-CREATE INDEX idx_maintenance_tenant ON MaintenanceRequests(tenant_id);
--- Index on status to speed up filtering by request status:
-CREATE INDEX idx_maintenance_status ON MaintenanceRequests(status);
-
--- Inspections Table
--- Index on property_id to speed up inspections search:
-CREATE INDEX idx_inspections_property ON Inspections(property_id);
--- Index on inspection_date for sorting/filtering by inspection date:
-CREATE INDEX idx_inspections_date ON Inspections(inspection_date);
-
--- Agents Table
--- Index on email and phone for quick lookups:
-CREATE UNIQUE INDEX idx_agents_email ON Agents(email);
-CREATE UNIQUE INDEX idx_agents_phone ON Agents(phone);
--- Index on agency_id for filtering agents by their agency:
-CREATE INDEX idx_agents_agency ON Agents(agency_id);
-
--- For Filtering and Sorting
--- If queries frequently involve filtering by multiple columns, composite indexes will improve performance.
--- Transactions
--- If you often search for transactions by agent and date, use:
-CREATE INDEX idx_transactions_agent_date ON Transactions(agent_id, transaction_date);
--- This helps with queries like:
--- SELECT * FROM Transactions WHERE agent_id = 5 AND transaction_date >= '2025-01-01';
--- Listings
--- If you often filter properties by agent and status, use:
-CREATE INDEX idx_listings_agent_status ON Listings(agent_id, listing_date);
--- This helps with:
--- SELECT * FROM Listings WHERE agent_id = 10 ORDER BY listing_date DESC;
--- Rentals
--- If you often query rentals by property and rent amount, use:
-CREATE INDEX idx_rentals_property_rent ON Rentals(property_id, rent_amount);
--- This speeds up:
--- SELECT * FROM Rentals WHERE property_id = 20 AND rent_amount > 1500;
-
--- ALter commands : Add column to owners table
-ALTER TABLE owners
-ADD COLUMN owners_address varchar(255);
-
--- Alter commands : Modify column to owners table
-ALTER TABLE owners
-MODIFY COLUMN owners_address varchar(100);
-
--- Alter commands : Drop or remove column to owners table 
-ALTER TABLE owners
-DROP COLUMN owners_address ;
-
--- Drop Command : Permanently remove table , column or index from the database
-DROP TABLE agents_agencies;
-DROP INDEX idx_rentals_property_rent ON Rentals;
+    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
