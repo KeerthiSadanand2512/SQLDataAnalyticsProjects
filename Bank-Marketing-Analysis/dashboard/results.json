@@ -1,0 +1,451 @@
+{
+  "01_quality": [
+    {
+      "records": 41188,
+      "subscriptions": 4640,
+      "unknown_default": 8597,
+      "never_previously_contacted": 39673,
+      "invalid_records": 0
+    }
+  ],
+  "02_kpis": [
+    {
+      "records": 41188,
+      "subscriptions": 4640,
+      "conversion_pct": 11.27,
+      "avg_campaign_contacts": 2.57,
+      "avg_last_call_seconds": 258.29
+    }
+  ],
+  "03_job_segments": [
+    {
+      "segment": "student",
+      "records": 875,
+      "subscriptions": 275,
+      "conversion_pct": 31.43,
+      "lift": 2.79,
+      "conversion_rank": 1
+    },
+    {
+      "segment": "retired",
+      "records": 1720,
+      "subscriptions": 434,
+      "conversion_pct": 25.23,
+      "lift": 2.24,
+      "conversion_rank": 2
+    },
+    {
+      "segment": "unemployed",
+      "records": 1014,
+      "subscriptions": 144,
+      "conversion_pct": 14.2,
+      "lift": 1.26,
+      "conversion_rank": 3
+    },
+    {
+      "segment": "admin.",
+      "records": 10422,
+      "subscriptions": 1352,
+      "conversion_pct": 12.97,
+      "lift": 1.15,
+      "conversion_rank": 4
+    },
+    {
+      "segment": "management",
+      "records": 2924,
+      "subscriptions": 328,
+      "conversion_pct": 11.22,
+      "lift": 1.0,
+      "conversion_rank": 5
+    },
+    {
+      "segment": "unknown",
+      "records": 330,
+      "subscriptions": 37,
+      "conversion_pct": 11.21,
+      "lift": 1.0,
+      "conversion_rank": 6
+    },
+    {
+      "segment": "technician",
+      "records": 6743,
+      "subscriptions": 730,
+      "conversion_pct": 10.83,
+      "lift": 0.96,
+      "conversion_rank": 7
+    },
+    {
+      "segment": "self-employed",
+      "records": 1421,
+      "subscriptions": 149,
+      "conversion_pct": 10.49,
+      "lift": 0.93,
+      "conversion_rank": 8
+    },
+    {
+      "segment": "housemaid",
+      "records": 1060,
+      "subscriptions": 106,
+      "conversion_pct": 10.0,
+      "lift": 0.89,
+      "conversion_rank": 9
+    },
+    {
+      "segment": "entrepreneur",
+      "records": 1456,
+      "subscriptions": 124,
+      "conversion_pct": 8.52,
+      "lift": 0.76,
+      "conversion_rank": 10
+    },
+    {
+      "segment": "services",
+      "records": 3969,
+      "subscriptions": 323,
+      "conversion_pct": 8.14,
+      "lift": 0.72,
+      "conversion_rank": 11
+    },
+    {
+      "segment": "blue-collar",
+      "records": 9254,
+      "subscriptions": 638,
+      "conversion_pct": 6.89,
+      "lift": 0.61,
+      "conversion_rank": 12
+    }
+  ],
+  "04_age_segments": [
+    {
+      "segment": "30\u201339",
+      "records": 16938,
+      "subscriptions": 1715,
+      "conversion_pct": 10.13
+    },
+    {
+      "segment": "40\u201349",
+      "records": 10526,
+      "subscriptions": 834,
+      "conversion_pct": 7.92
+    },
+    {
+      "segment": "50\u201359",
+      "records": 6862,
+      "subscriptions": 697,
+      "conversion_pct": 10.16
+    },
+    {
+      "segment": "60+",
+      "records": 1193,
+      "subscriptions": 472,
+      "conversion_pct": 39.56
+    },
+    {
+      "segment": "Under 30",
+      "records": 5669,
+      "subscriptions": 922,
+      "conversion_pct": 16.26
+    }
+  ],
+  "05_channel": [
+    {
+      "segment": "cellular",
+      "records": 26144,
+      "subscriptions": 3853,
+      "conversion_pct": 14.74
+    },
+    {
+      "segment": "telephone",
+      "records": 15044,
+      "subscriptions": 787,
+      "conversion_pct": 5.23
+    }
+  ],
+  "06_contact_frequency": [
+    {
+      "segment": "1",
+      "records": 17642,
+      "subscriptions": 2300,
+      "conversion_pct": 13.04
+    },
+    {
+      "segment": "2",
+      "records": 10570,
+      "subscriptions": 1211,
+      "conversion_pct": 11.46
+    },
+    {
+      "segment": "3",
+      "records": 5341,
+      "subscriptions": 574,
+      "conversion_pct": 10.75
+    },
+    {
+      "segment": "4\u20135",
+      "records": 4250,
+      "subscriptions": 369,
+      "conversion_pct": 8.68
+    },
+    {
+      "segment": "6+",
+      "records": 3385,
+      "subscriptions": 186,
+      "conversion_pct": 5.49
+    }
+  ],
+  "07_previous_outcome": [
+    {
+      "segment": "success",
+      "records": 1373,
+      "subscriptions": 894,
+      "conversion_pct": 65.11
+    },
+    {
+      "segment": "failure",
+      "records": 4252,
+      "subscriptions": 605,
+      "conversion_pct": 14.23
+    },
+    {
+      "segment": "nonexistent",
+      "records": 35563,
+      "subscriptions": 3141,
+      "conversion_pct": 8.83
+    }
+  ],
+  "08_month": [
+    {
+      "segment": "mar",
+      "records": 546,
+      "subscriptions": 276,
+      "conversion_pct": 50.55
+    },
+    {
+      "segment": "apr",
+      "records": 2632,
+      "subscriptions": 539,
+      "conversion_pct": 20.48
+    },
+    {
+      "segment": "may",
+      "records": 13769,
+      "subscriptions": 886,
+      "conversion_pct": 6.43
+    },
+    {
+      "segment": "jun",
+      "records": 5318,
+      "subscriptions": 559,
+      "conversion_pct": 10.51
+    },
+    {
+      "segment": "jul",
+      "records": 7174,
+      "subscriptions": 649,
+      "conversion_pct": 9.05
+    },
+    {
+      "segment": "aug",
+      "records": 6178,
+      "subscriptions": 655,
+      "conversion_pct": 10.6
+    },
+    {
+      "segment": "sep",
+      "records": 570,
+      "subscriptions": 256,
+      "conversion_pct": 44.91
+    },
+    {
+      "segment": "oct",
+      "records": 718,
+      "subscriptions": 315,
+      "conversion_pct": 43.87
+    },
+    {
+      "segment": "nov",
+      "records": 4101,
+      "subscriptions": 416,
+      "conversion_pct": 10.14
+    },
+    {
+      "segment": "dec",
+      "records": 182,
+      "subscriptions": 89,
+      "conversion_pct": 48.9
+    }
+  ],
+  "09_loan_context": [
+    {
+      "housing": "yes",
+      "loan": "no",
+      "records": 17885,
+      "subscriptions": 2098,
+      "conversion_pct": 11.73
+    },
+    {
+      "housing": "no",
+      "loan": "no",
+      "records": 16065,
+      "subscriptions": 1752,
+      "conversion_pct": 10.91
+    },
+    {
+      "housing": "yes",
+      "loan": "yes",
+      "records": 3691,
+      "subscriptions": 409,
+      "conversion_pct": 11.08
+    },
+    {
+      "housing": "no",
+      "loan": "yes",
+      "records": 2557,
+      "subscriptions": 274,
+      "conversion_pct": 10.72
+    },
+    {
+      "housing": "unknown",
+      "loan": "unknown",
+      "records": 990,
+      "subscriptions": 107,
+      "conversion_pct": 10.81
+    }
+  ],
+  "10_channel_adjusted": [
+    {
+      "poutcome": "failure",
+      "contact": "cellular",
+      "records": 3952,
+      "subscriptions": 571,
+      "conversion_pct": 14.45
+    },
+    {
+      "poutcome": "failure",
+      "contact": "telephone",
+      "records": 300,
+      "subscriptions": 34,
+      "conversion_pct": 11.33
+    },
+    {
+      "poutcome": "nonexistent",
+      "contact": "cellular",
+      "records": 20922,
+      "subscriptions": 2454,
+      "conversion_pct": 11.73
+    },
+    {
+      "poutcome": "nonexistent",
+      "contact": "telephone",
+      "records": 14641,
+      "subscriptions": 687,
+      "conversion_pct": 4.69
+    },
+    {
+      "poutcome": "success",
+      "contact": "cellular",
+      "records": 1270,
+      "subscriptions": 828,
+      "conversion_pct": 65.2
+    },
+    {
+      "poutcome": "success",
+      "contact": "telephone",
+      "records": 103,
+      "subscriptions": 66,
+      "conversion_pct": 64.08
+    }
+  ],
+  "11_candidate_segments": [
+    {
+      "job": "retired",
+      "contact": "cellular",
+      "poutcome": "success",
+      "records": 150,
+      "subscriptions": 110,
+      "rate": 0.7333333333333333,
+      "lift": 6.51
+    },
+    {
+      "job": "student",
+      "contact": "cellular",
+      "poutcome": "success",
+      "records": 104,
+      "subscriptions": 75,
+      "rate": 0.7211538461538461,
+      "lift": 6.4
+    },
+    {
+      "job": "admin.",
+      "contact": "cellular",
+      "poutcome": "success",
+      "records": 401,
+      "subscriptions": 268,
+      "rate": 0.6683291770573566,
+      "lift": 5.93
+    },
+    {
+      "job": "technician",
+      "contact": "cellular",
+      "poutcome": "success",
+      "records": 196,
+      "subscriptions": 130,
+      "rate": 0.6632653061224489,
+      "lift": 5.89
+    },
+    {
+      "job": "blue-collar",
+      "contact": "cellular",
+      "poutcome": "success",
+      "records": 106,
+      "subscriptions": 51,
+      "rate": 0.4811320754716981,
+      "lift": 4.27
+    },
+    {
+      "job": "student",
+      "contact": "cellular",
+      "poutcome": "nonexistent",
+      "records": 414,
+      "subscriptions": 127,
+      "rate": 0.30676328502415456,
+      "lift": 2.72
+    },
+    {
+      "job": "retired",
+      "contact": "cellular",
+      "poutcome": "failure",
+      "records": 212,
+      "subscriptions": 60,
+      "rate": 0.2830188679245283,
+      "lift": 2.51
+    },
+    {
+      "job": "student",
+      "contact": "cellular",
+      "poutcome": "failure",
+      "records": 153,
+      "subscriptions": 42,
+      "rate": 0.27450980392156865,
+      "lift": 2.44
+    },
+    {
+      "job": "retired",
+      "contact": "cellular",
+      "poutcome": "nonexistent",
+      "records": 869,
+      "subscriptions": 219,
+      "rate": 0.2520138089758343,
+      "lift": 2.24
+    },
+    {
+      "job": "technician",
+      "contact": "cellular",
+      "poutcome": "failure",
+      "records": 571,
+      "subscriptions": 105,
+      "rate": 0.18388791593695272,
+      "lift": 1.63
+    }
+  ]
+}

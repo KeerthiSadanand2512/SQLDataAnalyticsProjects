@@ -1,0 +1,4 @@
+segment,records,subscriptions,conversion_pct
+success,1373,894,65.11
+failure,4252,605,14.23
+nonexistent,35563,3141,8.83

@@ -1,0 +1,7 @@
+poutcome,contact,records,subscriptions,conversion_pct
+failure,cellular,3952,571,14.45
+failure,telephone,300,34,11.33
+nonexistent,cellular,20922,2454,11.73
+nonexistent,telephone,14641,687,4.69
+success,cellular,1270,828,65.2
+success,telephone,103,66,64.08

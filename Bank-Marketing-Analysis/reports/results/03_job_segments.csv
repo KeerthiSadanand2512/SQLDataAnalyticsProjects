@@ -1,0 +1,13 @@
+segment,records,subscriptions,conversion_pct,lift,conversion_rank
+student,875,275,31.43,2.79,1
+retired,1720,434,25.23,2.24,2
+unemployed,1014,144,14.2,1.26,3
+admin.,10422,1352,12.97,1.15,4
+management,2924,328,11.22,1.0,5
+unknown,330,37,11.21,1.0,6
+technician,6743,730,10.83,0.96,7
+self-employed,1421,149,10.49,0.93,8
+housemaid,1060,106,10.0,0.89,9
+entrepreneur,1456,124,8.52,0.76,10
+services,3969,323,8.14,0.72,11
+blue-collar,9254,638,6.89,0.61,12

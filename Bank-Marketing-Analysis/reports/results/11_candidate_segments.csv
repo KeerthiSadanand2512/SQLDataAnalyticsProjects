@@ -1,0 +1,11 @@
+job,contact,poutcome,records,subscriptions,rate,lift
+retired,cellular,success,150,110,0.7333333333333333,6.51
+student,cellular,success,104,75,0.7211538461538461,6.4
+admin.,cellular,success,401,268,0.6683291770573566,5.93
+technician,cellular,success,196,130,0.6632653061224489,5.89
+blue-collar,cellular,success,106,51,0.4811320754716981,4.27
+student,cellular,nonexistent,414,127,0.30676328502415456,2.72
+retired,cellular,failure,212,60,0.2830188679245283,2.51
+student,cellular,failure,153,42,0.27450980392156865,2.44
+retired,cellular,nonexistent,869,219,0.2520138089758343,2.24
+technician,cellular,failure,571,105,0.18388791593695272,1.63
